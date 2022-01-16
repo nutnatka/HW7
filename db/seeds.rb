@@ -11,8 +11,5 @@
   last_name = Faker::Name.unique.last_name
   gender = Faker::Gender.binary_type
   birthday = Faker::Date.unique.birthday
-  Author.create(first_name: first_name)
-  Author.create(last_name: last_name)
-  Author.create(gender: gender)
-  Author.create(birthday: birthday)
+  Author.create(first_name: first_name, last_name: last_name, gender: gender, birthday: birthday)
 end

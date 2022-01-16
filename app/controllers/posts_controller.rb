@@ -3,7 +3,14 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    @authors = Author.all
+    @authorId = params[:author]
+    if @authorId.nil?
+      @posts = Post.all
+    else
+      @author = Author.find(@authorId)
+      @posts = @author.posts
+    end
   end
 
   # GET /posts/1 or /posts/1.json
@@ -13,10 +20,12 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
+    @authors = Author.all
   end
 
   # GET /posts/1/edit
   def edit
+    @authors = Author.all
   end
 
   # POST /posts or /posts.json
@@ -65,6 +74,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:name, :title, :content, :image)
+      params.require(:post).permit(:name, :title, :content, :image, :author_id)
     end
 end

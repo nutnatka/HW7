@@ -31,6 +31,12 @@
     <%= form.text_field :image %>
   </div>
 
+  <div class="field">
+    <%= form.label :author_id %>
+    <%#= form.text_field :author_id %>
+    <%= select_tag 'post[author_id]', options_from_collection_for_select(@authors, 'id', 'last_name', post[:author_id]) %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

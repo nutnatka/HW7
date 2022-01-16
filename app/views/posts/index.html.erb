@@ -1,6 +1,24 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Posts</h1>
+
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+    <%= button_to 'all', {}, method: :get, form_class: "dropdown-author" %>
+    <% @authors.each do |author| %>
+      <%= button_to author.last_name, {}, method: :get, form_class: "dropdown-author", params:{author: author.id} %>
+      <%#= button_tag author.last_name, { class: "dropdown-author", author: author.id, type: 'index' } %>
+      <!--      <button class="dropdown-author" type="submit" id="<%#= author.id %>" ><%#= author.last_name %></button>-->
+    <% end %>
+  </div>
+  <%#= select_tag 'authors', options_from_collection_for_select(@authors, 'id', 'last_name'), prompt: 'all', onchange: 'window.location.href = "/?author=" + this.value' %>
+</div>
+
+<br>
+
 <div class="container">
   <div class="row">
     <% @posts.each do |post| %>
@@ -16,17 +34,6 @@
         </div>
       </div>
     <% end %>
-  </div>
-</div>
-
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <button class="dropdown-author" type="button">Action</button>
-    <button class="dropdown-author type="button">Another action</button>
-    <button class="dropdown-author" type="button">Something else here</button>
   </div>
 </div>
 
