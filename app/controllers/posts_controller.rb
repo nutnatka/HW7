@@ -4,12 +4,26 @@ class PostsController < ApplicationController
   # GET /posts or /posts.json
   def index
     @authors = Author.all
+    @posts = Post.all
+    @comments = Comment.all
+
     @authorId = params[:author]
-    if @authorId.nil?
-      @posts = Post.all
+    @status = params[:published]
+
+    if !@status.nil?
+      @comments = Comment.find_by(status: true)
     else
+      # some else
+    end
+
+    if !@authorId.nil?
       @author = Author.find(@authorId)
       @posts = @author.posts
+      @comments = Comment.find_by(status: true)
+
+      puts @comments
+    else
+      # some else
     end
   end
 
