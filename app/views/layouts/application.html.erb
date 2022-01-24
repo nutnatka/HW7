@@ -16,12 +16,15 @@
           <span class="fs-4">Небо, як інший Всесвіт</span>
         </a>
       </div>
-    </header>
-    <div class="content">
-      <div class="container">
-        <%= yield %>
 
+      <div id="user_header">
+        <%= link_to "Sign Up", new_user_path %>
+        <%= link_to "Log In", new_session_path %>
       </div>
+    </header>
+
+    <%= yield %>
+
     </div>
     <footer>
       <div class="container">

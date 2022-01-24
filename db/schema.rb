@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_17_194403) do
+ActiveRecord::Schema.define(version: 2022_01_23_083336) do
 
   create_table "authors", force: :cascade do |t|
     t.string "first_name"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2022_01_17_194403) do
 
   create_table "comments", force: :cascade do |t|
     t.text "body"
-    t.integer "status"[published, unpublished]
+    t.integer "status"
     t.integer "author_id"
     t.integer "post_id"
     t.datetime "created_at", precision: 6, null: false
@@ -39,6 +39,13 @@ ActiveRecord::Schema.define(version: 2022_01_17_194403) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "author_id"
     t.index ["author_id"], name: "index_posts_on_author_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "posts", "authors"
