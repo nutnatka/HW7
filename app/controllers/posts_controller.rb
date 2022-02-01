@@ -5,7 +5,8 @@ class PostsController < ApplicationController
   # GET /posts or /posts.json
   def index
     @authors = Author.all
-    @posts = Post.all
+    @pagy, @posts = pagy(Post.all, items: 8)
+
     @comments = Comment.all
 
     @authorId = params[:author]
@@ -19,7 +20,7 @@ class PostsController < ApplicationController
 
     if !@authorId.nil?
       @author = Author.find(@authorId)
-      @posts = @author.posts
+      @pagy, @posts = @author.posts
       @comments = Comment.find_by(status: true)
 
       puts @comments

@@ -42,3 +42,4 @@
 
 <%= link_to 'New Post', new_post_path %>
 <%= render 'sessions/modal' if show_login_modal? %>
+<%== pagy_nav(@pagy).html_safe%>
