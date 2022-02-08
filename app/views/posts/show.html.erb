@@ -30,6 +30,7 @@
 <% @comments.each do |comments| %>
   <div class="card" style="width: 18rem;">
     <p><%= comments.body %>"</p>
+    <butto class="votes_up" data-comment-id="<%= comments.id %>">+</butto>
     </div>
   </div>
 <% end %>
@@ -63,3 +64,22 @@
 <%= link_to 'Back', posts_path %>
 
 <%= render 'sessions/modal' if show_login_modal? %>
+
+<script>
+  setTimeout(() => {
+      const voteUpBtns = document.getElementsByClassName('votes_up');
+      // console.log()
+      [].forEach.call(voteUpBtns, function (el) {
+          $(el).on('click', (e) => {
+              const commentId = el.getAttribute('data-comment-id');
+              console.log('CLICK', commentId);
+              $.ajax({
+                  type: "POST",
+                  url: 'http://localhost:3000/author_comment_vote',
+                  data: {commentId: commentId, vote: true},
+                  success: () => { console.log('sdkjfksdf') }
+              });
+          })
+      });
+  })
+</script>

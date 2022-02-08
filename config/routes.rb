@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
+  resources :author_comment_vote, only: [:create]
+  post 'votes', to: 'votes#create', as: 'author_comment_votes'
+
   resources :sessions
   resources :users
   root 'posts#index'
